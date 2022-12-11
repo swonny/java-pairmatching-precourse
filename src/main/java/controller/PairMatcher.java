@@ -19,7 +19,6 @@ public class PairMatcher {
             throw new RuntimeException(e);
         }
         // TODO : 중복되는 페어 있는ㄴ지 검사
-        System.out.println(crewNames);
         List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 목록
         List<Pair> pairs = PairMaker.make(shuffledCrew);
         return pairs;

@@ -1,5 +1,6 @@
 package view;
 
+import domain.Pair;
 import view.uitils.MainMenu;
 
 import java.util.List;
@@ -48,10 +49,14 @@ public class OutputView {
         print(result.toString());
     }
 
-    public static void printPairMatchingResult(List<List<String>> result) {
+    public static void printPairMatchingResult(List<Pair> pairs) {
         print(PAIR_RESULT);
-        result.stream().map(pair -> pair.stream().collect(Collectors.joining(PAIR_DELIMITER)))
+        System.out.println(pairs);
+        pairs.stream()
+                .map(Pair::getName)
+                .map(pair -> pair.stream().collect(Collectors.joining(PAIR_DELIMITER)))
                 .forEach(OutputView::print);
+        print(NEWLINE);
     }
 
     public static void printFinishedInit() {

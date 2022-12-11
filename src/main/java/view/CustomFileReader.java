@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CustomFileReader {
     private static final String frontFilePath = "/Users/choeseung-won/woowa-precourse-5/java-pairmatching-precourse/src/main/resources/frontend-crew.md";
-    private static final String backFilePath = "/Users/choeseung-won/woowa-precourse-5/java-pairmatching-precourse/src/main/resources/resources/backend-crew.md";
+    private static final String backFilePath = "/Users/choeseung-won/woowa-precourse-5/java-pairmatching-precourse/src/main/resources/backend-crew.md";
     private static File file;
 
     public static List<String> getCrewNames(Course course) throws IOException {

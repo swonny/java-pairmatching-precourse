@@ -15,7 +15,11 @@ public class Pair {
         pair = Stream.of(crew1, crew2).collect(Collectors.toList());
     }
 
-    public Pair(String crew1, String crew2, String crew3) {
-        pair = Stream.of(crew1, crew2, crew3).collect(Collectors.toList());
+    public void add(String crew) {
+        pair.add(crew);
+    }
+
+    public List<String> getName() {
+        return pair;
     }
 }

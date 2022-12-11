@@ -20,13 +20,11 @@ public class PairMatchingController {
 
     public static void start() {
         String userInput = read(InputView::readPairMatching);
-        List<String> inputs = Arrays.stream(userInput.split(" ,")).collect(Collectors.toList());
-        // TODO: 페어매칭 진행
-        // TODO : String 반환값 변경
+        List<String> inputs = Arrays.stream(userInput.split(", ")).collect(Collectors.toList());
         // TODO : 미션 네임 변경
         List<Pair> pairs = PairMatcher.match(inputs.get(COURSE));
         MissionPairRepository.add(MissionRepository.getMissionByName(inputs.get(MISSION)), pairs);
-//        OutputView.printPairMatchingResult(result);
+        OutputView.printPairMatchingResult(pairs);
     }
 
     private static <T> T read(Supplier<T> inputReader) {
