@@ -1,6 +1,5 @@
 package controller;
 
-import domain.Mission;
 import domain.MissionPairRepository;
 import domain.MissionRepository;
 import domain.Pair;
@@ -9,6 +8,7 @@ import view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -23,8 +23,17 @@ public class PairMatchingController {
         List<String> inputs = Arrays.stream(userInput.split(", ")).collect(Collectors.toList());
         // TODO : 미션 네임 변경
         List<Pair> pairs = PairMatcher.match(inputs.get(COURSE));
-        MissionPairRepository.add(MissionRepository.getMissionByName(inputs.get(MISSION)), pairs);
+        addToMissionRepository(inputs.get(MISSION), pairs);
         OutputView.printPairMatchingResult(pairs);
+    }
+
+    private static void addToMissionRepository(String missionName, List<Pair> pairs) {
+        try {
+            MissionPairRepository.add(MissionRepository.getMissionByName(missionName), pairs);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            start();
+        }
     }
 
     private static <T> T read(Supplier<T> inputReader) {
@@ -35,4 +44,5 @@ public class PairMatchingController {
             return inputReader.get();
         }
     }
+
 }
