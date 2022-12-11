@@ -34,8 +34,7 @@ public class OutputView {
         print(ERROR + errorMessage);
     }
 
-    public static String printInputExample() {
-        // TODO : return이 아니라 프린트하기
+    public static void printInputExample() {
         // TODO : enum 변경
         StringBuilder result = new StringBuilder();
         result.append(MISSION_INFORMATION_DELIMITER + NEWLINE);
@@ -44,9 +43,9 @@ public class OutputView {
         result.append(
                 LEVEL_1 + NEWLINE + LEVEL_2 + NEWLINE + LEVEL_3 + NEWLINE + LEVEL_4 + NEWLINE + LEVEL_5 + NEWLINE
         );
-        result.append(LEVEL_MISSION_SELECTION_MESSAGE  + NEWLINE);
         result.append(MISSION_INFORMATION_DELIMITER);
-        return result.toString();
+        result.append(LEVEL_MISSION_SELECTION_MESSAGE  + NEWLINE);
+        print(result.toString());
     }
 
     public static void printPairMatchingResult(List<List<String>> result) {
