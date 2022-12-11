@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PairMaker {
-    public static List<Pair> make(List<String> crewNames) {
+    public static List<Pair> make(ArrayList<String> crewNames) {
         List<Pair> pairs = new ArrayList<>();
         while (crewNames.size() > 1) {
             pairs.add(new Pair(crewNames.remove(0), crewNames.remove(0)));

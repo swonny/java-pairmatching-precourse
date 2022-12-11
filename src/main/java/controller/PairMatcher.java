@@ -20,7 +20,7 @@ public class PairMatcher {
         }
         // TODO : 중복되는 페어 있는ㄴ지 검사
         List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 목록
-        List<Pair> pairs = PairMaker.make(shuffledCrew);
+        List<Pair> pairs = PairMaker.make(new ArrayList<>(shuffledCrew));
         return pairs;
     }
 
