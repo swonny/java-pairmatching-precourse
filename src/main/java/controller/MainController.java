@@ -17,14 +17,19 @@ public class MainController {
     }
 
     private static void runMenu(String selection) {
-        if (MainMenu.FIRST.equals(selection)) {
-            PairMatchingController.start();
-        }
-        if (MainMenu.SECOND.equals(selection)) {
-            PairSearcherController.start();
-        }
-        if (MainMenu.THIRD.equals(selection)) {
-            Initializer.init();
+        try {
+            if (MainMenu.FIRST.equals(selection)) {
+                PairMatchingController.start();
+            }
+            if (MainMenu.SECOND.equals(selection)) {
+                PairSearcherController.start();
+            }
+            if (MainMenu.THIRD.equals(selection)) {
+                Initializer.init();
+            }
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            start();
         }
     }
 

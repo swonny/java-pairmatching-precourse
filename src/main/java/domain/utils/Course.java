@@ -11,15 +11,15 @@ public enum Course {
     }
 
     public static Course getCourseByName(String name) {
-        if (BACKEND.name.equals(name)) {
-            return BACKEND;
+        for (Course course : Course.values()) {
+            if (course.name.equals(name)) {
+                return course;
+            }
         }
-        return FRONTEND;
+        throw new IllegalArgumentException("백엔드, 프론트엔드 중 입력하세요.");
     }
 
     public String getName() {
         return this.name;
     }
-
-    // 추가 기능 구현
 }

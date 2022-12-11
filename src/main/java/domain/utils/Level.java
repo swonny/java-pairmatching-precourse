@@ -42,7 +42,7 @@ public enum Level {
                 return level;
             }
         }
-        return null;
+        throw new IllegalArgumentException("레벨 1 ~5 중 입력하세요.");
     }
 
     public List<Mission> getMissionList() {

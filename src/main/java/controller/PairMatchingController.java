@@ -13,7 +13,6 @@ import view.OutputView;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -23,33 +22,62 @@ public class PairMatchingController {
     private static final int COURSE = 0;
     private static final int LEVEL = 1;
     private static final int MISSION = 2;
+    private static final int NUMBER_OF_RESULT = 3;
 
     public static void start() {
-        List<String> inputs = getInput();
-        Level level = read(Level::getLevelByName, inputs.get(LEVEL));
-        Mission mission = read(MissionRepository::getMissionByName, inputs.get(MISSION));
-        Course course = read(Course::getCourseByName, inputs.get(COURSE));
+        List<String> input = getInput();
+        Level level = getLevel(input.get(LEVEL));
+        Mission mission = getMission(input.get(MISSION));
+        Course course = getCourse(input.get(COURSE));
         if (MissionPairRepository.hasPair(mission) && !willRepair()) {
             MainController.start();
         }
         List<Pair> pairs = getUniquePairs(level, course, mission);
-        try {
-            validateSize(pairs.size());
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-            return;
-        }
-        addToMissionRepository(inputs.get(MISSION), pairs);
+        validateSize(pairs.size());
+        addToMissionRepository(mission, pairs);
         OutputView.printPairMatchingResult(pairs);
     }
 
-    private static boolean willRepair() {
-        return read(Command::isRepair, InputView::askForRemakePair);
+    private static List<String> getInput() {
+        try {
+            String input = InputView.readPairMatching();
+            List<String> result = Arrays.stream(input.split(", ")).collect(Collectors.toList());
+            validateResultSize(result.size());
+            getLevel(result.get(LEVEL));
+            getMission(result.get(MISSION));
+            getCourse(result.get(COURSE));
+            return result;
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return getInput();
+        }
     }
 
-    private static List<String> getInput() {
-        String input = read(InputView::readPairMatching);
-        return Arrays.stream(input.split(", ")).collect(Collectors.toList());
+    private static void validateResultSize(int size) {
+        if (size < NUMBER_OF_RESULT) {
+            throw new IllegalArgumentException("세 개의 값 모두 입력하세요.");
+        }
+    }
+
+    private static Course getCourse(String course) {
+        return Course.getCourseByName(course);
+    }
+
+    private static Mission getMission(String mission) {
+        return MissionRepository.getMissionByName(mission);
+    }
+
+    private static Level getLevel(String level) {
+        return Level.getLevelByName(level);
+    }
+
+    private static boolean willRepair() {
+        try {
+            return Command.isRepair(InputView.askForRemakePair());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return willRepair();
+        }
     }
 
     private static List<Pair> getUniquePairs(Level level, Course course, Mission mission) {
@@ -72,13 +100,8 @@ public class PairMatchingController {
         }
     }
 
-    private static void addToMissionRepository(String missionName, List<Pair> pairs) {
-        try {
-            MissionPairRepository.add(MissionRepository.getMissionByName(missionName), pairs);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-            start();
-        }
+    private static void addToMissionRepository(Mission mission, List<Pair> pairs) {
+        MissionPairRepository.add(mission, pairs);
     }
 
     private static <T> T read(Supplier<T> inputReader) {
@@ -89,23 +112,4 @@ public class PairMatchingController {
             return inputReader.get();
         }
     }
-
-    private static <T, R> R read(Function<T, R> object, String input) {
-        try {
-            return object.apply((T) input);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return
-        }
-    }
-
-    private static <T, R> R read(Function<T, R> object, Supplier<T> input) {
-        try {
-            return object.apply(input.get());
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return object.apply(input.get());
-        }
-    }
-
 }
