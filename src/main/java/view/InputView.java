@@ -19,4 +19,9 @@ public class InputView {
         OutputView.printInputExample();
         return Console.readLine();
     }
+
+    public static String askForRemakePair() {
+        OutputView.printAskingRemakePair();
+        return Console.readLine();
+    }
 }

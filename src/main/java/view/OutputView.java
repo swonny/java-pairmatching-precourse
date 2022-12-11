@@ -22,6 +22,7 @@ public class OutputView {
     private static final String PAIR_RESULT = "페어 매칭 결과입니다.";
     private static final String PAIR_DELIMITER = " : ";
     private static final String FINISHED_INIT = "초기화 되었습니다.";
+    private static final String REPAIR = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" + "네 | 아니오";
 
     public static void printMainMenu() {
         print(MainMenu.getWholeMenu());
@@ -37,21 +38,20 @@ public class OutputView {
 
     public static void printInputExample() {
         // TODO : enum 변경
-        StringBuilder result = new StringBuilder();
-        result.append(MISSION_INFORMATION_DELIMITER + NEWLINE);
-        result.append(COURSE + NEWLINE);
-        result.append(MISSION + NEWLINE);
-        result.append(
+        StringBuilder information = new StringBuilder();
+        information.append(MISSION_INFORMATION_DELIMITER + NEWLINE);
+        information.append(COURSE + NEWLINE);
+        information.append(MISSION + NEWLINE);
+        information.append(
                 LEVEL_1 + NEWLINE + LEVEL_2 + NEWLINE + LEVEL_3 + NEWLINE + LEVEL_4 + NEWLINE + LEVEL_5 + NEWLINE
         );
-        result.append(MISSION_INFORMATION_DELIMITER);
-        result.append(LEVEL_MISSION_SELECTION_MESSAGE  + NEWLINE);
-        print(result.toString());
+        information.append(MISSION_INFORMATION_DELIMITER);
+        information.append(LEVEL_MISSION_SELECTION_MESSAGE);
+        print(information.toString());
     }
 
     public static void printPairMatchingResult(List<Pair> pairs) {
         print(PAIR_RESULT);
-        System.out.println(pairs);
         pairs.stream()
                 .map(Pair::getName)
                 .map(pair -> pair.stream().collect(Collectors.joining(PAIR_DELIMITER)))
@@ -61,5 +61,9 @@ public class OutputView {
 
     public static void printFinishedInit() {
         print(FINISHED_INIT);
+    }
+
+    public static void printAskingRemakePair() {
+        print(REPAIR);
     }
 }

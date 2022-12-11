@@ -22,7 +22,6 @@ public class CustomFileReader {
                 reader = new BufferedReader(new FileReader(file));
                 while ((line = reader.readLine()) != null) {
                     crewNames.add(line);
-                    System.out.println(line);
                 }
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);

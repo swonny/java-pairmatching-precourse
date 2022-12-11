@@ -1,5 +1,7 @@
 package domain;
 
+import domain.utils.Level;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,5 +21,18 @@ public class MissionPairRepository {
 
     public static void clear() {
         missionsMatchingPairs.clear();
+    }
+
+    public static boolean hasPair(Mission mission) {
+        return missionsMatchingPairs.containsKey(mission);
+    }
+
+    public static boolean hasSamePair(Level level, List<Pair> pairs) {
+        for (Mission mission : level.getMissionList()) {
+            if (missionsMatchingPairs.containsKey(mission) && missionsMatchingPairs.get(mission).stream().anyMatch(pair -> pairs.contains(pair))) {
+                return true;
+            }
+        }
+        return false;
     }
 }
