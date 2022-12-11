@@ -16,4 +16,8 @@ public class MissionPairRepository {
         }
         return missionsMatchingPairs.get(mission);
     }
+
+    public static void clear() {
+        missionsMatchingPairs.clear();
+    }
 }

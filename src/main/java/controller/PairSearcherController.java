@@ -22,13 +22,14 @@ public class PairSearcherController {
     }
 
     private static List<Pair> getPair(Mission mission) {
+        List<Pair> pairs = null;
         try {
-            PairSearcher.getPair(mission);
+            pairs = PairSearcher.getPair(mission);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
             start();
         }
-        return null;
+        return pairs;
     }
 
     private static Mission getMission(String missionName) {
