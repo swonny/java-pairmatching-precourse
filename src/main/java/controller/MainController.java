@@ -1,9 +1,9 @@
 package controller;
 
-import domain.Initializer;
+import domain.MissionPairRepository;
 import view.InputView;
 import view.OutputView;
-import view.uitils.MainMenu;
+import contatants.MainMenu;
 
 import java.util.function.Supplier;
 
@@ -25,12 +25,17 @@ public class MainController {
                 PairSearcherController.start();
             }
             if (MainMenu.THIRD.equals(selection)) {
-                Initializer.init();
+                init();
             }
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
             start();
         }
+    }
+
+    private static void init() {
+        MissionPairRepository.clear();
+        OutputView.printFinishedInit();
     }
 
     private static <T> T read(Supplier<T> inputReader) {

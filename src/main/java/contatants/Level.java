@@ -1,4 +1,4 @@
-package domain.utils;
+package contatants;
 
 import domain.Mission;
 

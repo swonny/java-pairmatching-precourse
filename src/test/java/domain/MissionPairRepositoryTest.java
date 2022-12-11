@@ -1,13 +1,11 @@
 package domain;
 
-import domain.utils.Level;
+import contatants.Level;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MissionPairRepositoryTest {
     @Test

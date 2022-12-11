@@ -1,7 +1,5 @@
 package domain;
 
-import domain.utils.Level;
-
 public class Mission {
     private String name;
 

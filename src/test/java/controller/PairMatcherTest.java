@@ -1,10 +1,10 @@
 package controller;
 
-import domain.utils.Course;
+import contatants.Course;
+import domain.PairMatcher;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PairMatcherTest {
     @Test

@@ -1,7 +1,7 @@
 package view;
 
 import domain.Pair;
-import view.uitils.MainMenu;
+import contatants.MainMenu;
 
 import java.util.List;
 import java.util.stream.Collectors;

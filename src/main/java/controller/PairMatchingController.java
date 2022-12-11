@@ -1,19 +1,15 @@
 package controller;
 
-import domain.Mission;
-import domain.MissionPairRepository;
-import domain.MissionRepository;
-import domain.Pair;
-import domain.utils.Command;
-import domain.utils.Course;
-import domain.utils.Level;
+import domain.*;
+import contatants.Command;
+import contatants.Course;
+import contatants.Level;
 import view.InputView;
 import view.OutputView;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class PairMatchingController {
@@ -102,14 +98,5 @@ public class PairMatchingController {
 
     private static void addToMissionRepository(Mission mission, List<Pair> pairs) {
         MissionPairRepository.add(mission, pairs);
-    }
-
-    private static <T> T read(Supplier<T> inputReader) {
-        try {
-            return inputReader.get();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return inputReader.get();
-        }
     }
 }

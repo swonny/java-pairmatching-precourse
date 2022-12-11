@@ -1,4 +1,4 @@
-package domain.utils;
+package contatants;
 
 public enum Course {
     BACKEND("백엔드"),

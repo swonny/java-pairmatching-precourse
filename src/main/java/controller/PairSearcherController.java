@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Mission;
+import domain.MissionPairRepository;
 import domain.MissionRepository;
 import domain.Pair;
 import view.InputView;
@@ -24,7 +25,7 @@ public class PairSearcherController {
     private static List<Pair> getPair(Mission mission) {
         List<Pair> pairs = null;
         try {
-            pairs = PairSearcher.getPair(mission);
+            pairs = MissionPairRepository.getPairByMission(mission);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
             start();

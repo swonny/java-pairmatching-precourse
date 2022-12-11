@@ -1,6 +1,6 @@
 package domain;
 
-import domain.utils.Level;
+import contatants.Level;
 
 import java.util.HashMap;
 import java.util.List;
