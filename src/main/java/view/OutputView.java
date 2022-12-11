@@ -1,6 +1,5 @@
 package view;
 
-import jdk.nashorn.internal.runtime.arrays.NumericElements;
 import view.uitils.MainMenu;
 
 import java.util.List;
@@ -21,6 +20,7 @@ public class OutputView {
     private static final String NEWLINE = "\n";
     private static final String PAIR_RESULT = "페어 매칭 결과입니다.";
     private static final String PAIR_DELIMITER = " : ";
+    private static final String FINISHED_INIT = "초기화 되었습니다.";
 
     public static void printMainMenu() {
         print(MainMenu.getWholeMenu());
@@ -53,5 +53,9 @@ public class OutputView {
         print(PAIR_RESULT);
         result.stream().map(pair -> pair.stream().collect(Collectors.joining(PAIR_DELIMITER)))
                 .forEach(OutputView::print);
+    }
+
+    public static void printFinishedInit() {
+        print(FINISHED_INIT);
     }
 }

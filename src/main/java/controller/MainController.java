@@ -1,11 +1,10 @@
 package controller;
 
-import jdk.tools.jmod.Main;
+import domain.Initializer;
 import view.InputView;
 import view.OutputView;
 import view.uitils.MainMenu;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MainController {
@@ -20,6 +19,12 @@ public class MainController {
     private static void runMenu(String selection) {
         if (MainMenu.FIRST.equals(selection)) {
             PairMatchingController.start();
+        }
+        if (MainMenu.SECOND.equals(selection)) {
+            PairSearcherController.start();
+        }
+        if (MainMenu.THIRD.equals(selection)) {
+            Initializer.init();
         }
     }
 
