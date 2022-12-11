@@ -35,7 +35,7 @@ public class CustomFileReader {
     }
 
     private static void setFile(Course course) {
-        if (Course.FRONTEND.equals(course)) {
+        if (Course.FRONTEND == course) {
             file = new File(frontFilePath);
             return;
         }
