@@ -17,7 +17,6 @@ public class MissionRepository {
                 return mission;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 해당 미션은 존재하지 않습니다.");
+        throw new IllegalArgumentException("해당 미션은 존재하지 않습니다.");
     }
-
 }

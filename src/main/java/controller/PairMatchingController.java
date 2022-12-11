@@ -44,5 +44,4 @@ public class PairMatchingController {
             return inputReader.get();
         }
     }
-
 }
