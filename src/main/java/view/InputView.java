@@ -10,7 +10,6 @@ public class InputView {
         return Console.readLine();
     }
 
-
     public static String readSelectingMission() {
         OutputView.printInputExample();
         return Console.readLine();
