@@ -1,5 +1,6 @@
 package controller;
 
+import jdk.tools.jmod.Main;
 import view.InputView;
 import view.OutputView;
 import view.uitils.MainMenu;
@@ -12,6 +13,13 @@ public class MainController {
         String selection = "";
         while (!MainMenu.isQuit(selection)) {
             selection = read(InputView::readMainMenu);
+            runMenu(selection);
+        }
+    }
+
+    private static void runMenu(String selection) {
+        if (MainMenu.FIRST.equals(selection)) {
+            PairMatchingController.start();
         }
     }
 
