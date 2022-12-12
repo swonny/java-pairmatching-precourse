@@ -14,5 +14,4 @@ class MainControllerTest {
         mainController.select(MainMenu.THIRD);
         mainController.select(MainMenu.QUIT);
     }
-
 }

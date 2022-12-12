@@ -21,4 +21,12 @@ public enum Level {
                 .map(level -> level.name)
                 .collect(Collectors.joining("\n"));
     }
+
+    public static Level getLevelByName(String levelName) {
+        return Arrays.stream(Level.values())
+                .filter(course -> course.name.equals(levelName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("레벨1 ~ 5 중 입력하세요."));
+
+    }
 }

@@ -10,6 +10,8 @@ import static constant.ViewMessage.*;
 
 public class OutputView {
 
+    private static final String ERROR = "[ERROR] ";
+
     public static void print(String value) {
         System.out.println(value);
     }
@@ -26,5 +28,9 @@ public class OutputView {
                         .stream().map(crew -> crew.getName()).collect(Collectors.joining(PAIR_DELIMITER)))
                 .forEach(OutputView::print);
         print(NEW_LINE);
+    }
+
+    public static void printException(IllegalArgumentException exception) {
+        print(ERROR + exception.getMessage());
     }
 }
