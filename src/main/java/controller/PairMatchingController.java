@@ -30,7 +30,7 @@ public class PairMatchingController {
         }
         List<Pair> pairs = getUniquePairs(level, course, mission);
         validateSize(pairs.size());
-        addToMissionRepository(mission, pairs);
+        addToMissionRepository(mission, course, pairs);
         OutputView.printPairMatchingResult(pairs);
     }
 
@@ -96,7 +96,11 @@ public class PairMatchingController {
         }
     }
 
-    private static void addToMissionRepository(Mission mission, List<Pair> pairs) {
-        MissionPairRepository.add(mission, pairs);
+    private static void addToMissionRepository(Mission mission, Course course, List<Pair> pairs) {
+        if (course.isFrontend()) {
+            FrontendPairRepository.add(mission, pairs);
+            return;
+        }
+        BackendPairRepository.add(mission, pairs);
     }
 }

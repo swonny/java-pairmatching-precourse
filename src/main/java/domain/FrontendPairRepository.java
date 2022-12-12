@@ -6,15 +6,14 @@ import contatants.Level;
 import java.util.HashMap;
 import java.util.List;
 
-public class MissionPairRepository {
-    private static final BackendPairRepository backendPairRepository;
-    private static final HashMap<Mission, List<Pair>> BackendPairs = new HashMap<>();
+public class FrontendPairRepository {
+    private static final HashMap<Mission, List<Pair>> frontendPairs = new HashMap<>();
 
-    public static void add(Mission mission, Course course, List<Pair> pairs) {
+    public static void add(Mission mission, List<Pair> pairs) {
         frontendPairs.put(mission, pairs);
     }
 
-    public static List<Pair> getPairByMision(Mission mission) {
+    public static List<Pair> getPairByMission(Mission mission) {
         if (!frontendPairs.containsKey(mission)) {
             throw new IllegalArgumentException("매칭 이력이 없습니다.");
         }

@@ -22,4 +22,8 @@ public enum Course {
     public String getName() {
         return this.name;
     }
+
+    public boolean isFrontend() {
+        return this == FRONTEND;
+    }
 }

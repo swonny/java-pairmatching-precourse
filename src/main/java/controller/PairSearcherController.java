@@ -8,6 +8,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class PairSearcherController {
     }
 
     private static List<Pair> getPair(Mission mission) {
-        List<Pair> pairs = null;
+        List<Pair> pairs = Collections.emptyList();
         try {
             pairs = MissionPairRepository.getPairByMission(mission);
         } catch (IllegalArgumentException exception) {
