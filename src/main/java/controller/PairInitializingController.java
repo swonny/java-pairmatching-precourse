@@ -1,11 +1,11 @@
 package controller;
 
-import repository.PairRepository;
+import repository.PairMatchingRepository;
 import view.OutputView;
 
 public class PairInitializingController {
     public static void run() {
-        PairRepository.initialize();
+        PairMatchingRepository.initialize();
         OutputView.printFinishedInitializing();
     }
 }

@@ -3,6 +3,7 @@ package view;
 import constant.ExampleViewMessage;
 import constant.MainMenu;
 import pairmatching.Crew;
+import pairmatching.Pair;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,11 +29,11 @@ public class OutputView {
         print(ExampleViewMessage.getExample());
     }
 
-    public static void printPairs(List<List<Crew>> pairs) {
+    public static void printPairs(List<Pair> pairs) {
         printNewLine();
         print(PAIR_MATCHING_RESULT);
-        for (List<Crew> crews : pairs) {
-            print(crews.stream().map(crew-> crew.getName()).collect(Collectors.joining(CREW_DELIMITER)));
+        for (Pair pair : pairs) {
+            print(pair.getCrews().stream().map(crew-> crew.getName()).collect(Collectors.joining(CREW_DELIMITER)));
         }
         printNewLine();
     }

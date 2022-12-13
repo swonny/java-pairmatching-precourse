@@ -3,13 +3,11 @@ package controller;
 import constant.Course;
 import constant.Level;
 import constant.Mission;
-import pairmatching.Crew;
-import repository.PairRepository;
+import repository.PairMatchingRepository;
 import view.InputView;
 import view.OutputView;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +25,7 @@ public class PairSearchingController {
 
     private static void printPairs(Course course, Mission mission) {
         try {
-            OutputView.printPairs(PairRepository.pairs(course, mission));
+            OutputView.printPairs(PairMatchingRepository.pairs(course, mission));
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
         }
