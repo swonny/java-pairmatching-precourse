@@ -1,8 +1,6 @@
 package controller;
 
 import constant.MainMenu;
-import repository.CrewRepository;
-import service.PairMatchingService;
 import view.InputView;
 import view.OutputView;
 

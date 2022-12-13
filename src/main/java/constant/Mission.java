@@ -22,7 +22,7 @@ public enum Mission {
         this.gameName = gameName;
     }
 
-    public static Mission getCourseByName(String missionName) {
+    public static Mission getMissionByName(String missionName) {
         return Arrays.stream(Mission.values())
                 .filter(mission -> mission.gameName.equals(missionName))
                 .findAny()

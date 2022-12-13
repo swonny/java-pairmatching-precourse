@@ -25,16 +25,29 @@ public class PairMatchingController {
     }
 
     public void run() {
-        List<String> input = getInputs();
-        Course course = getCourse(input.get(COURSE_INDEX));
-        Level level = getLevel(input.get(LEVEL_INDEX));
-        Mission mission = getMission(input.get(MISSION_INDEX));
+        List<Enum> input = getInputs(InputView.readPairInformation());
+        Course course = (Course) input.get(COURSE_INDEX);
+        Level level = (Level) input.get(LEVEL_INDEX);
+        Mission mission = (Mission) input.get(MISSION_INDEX);
         if (PairMatchingRepository.hasPairs(course, mission) && RetryCommand.WILL_NOT_RETRY.equals(willMakeNewPair())) {
             run();
             return;
         }
         List<List<Crew>> pairs = getNewPairs(course, level, mission);
         OutputView.printPairMatchingResult(pairs);
+    }
+
+    private List<Enum> getInputs(String input) {
+        try {
+            List<String> inputs = splitInput(input);
+            Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
+            Level level = Level.getLevelByName(inputs.get(LEVEL_INDEX));
+            Mission mission = Mission.getMissionByName(inputs.get(MISSION_INDEX));
+            return Arrays.asList(course, level, mission);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return getInputs(InputView.readPairInformation());
+        }
     }
 
     private RetryCommand willMakeNewPair() {
@@ -46,48 +59,12 @@ public class PairMatchingController {
         }
     }
 
-    private List<String> getInputs() {
-        try {
-            return splitInput(InputView.readPairInformation());
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return getInputs();
-        }
-    }
-
     private List<List<Crew>> getNewPairs(Course course, Level level, Mission mission) {
         try {
             return pairMatchingService.makePairs(course, level, mission);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return getNewPairs(course, level, mission);
-        }
-    }
-
-    private Course getCourse(String courseName) {
-        try {
-            return Course.getCourseByName(courseName);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return getCourse(courseName);
-        }
-    }
-
-    private Mission getMission(String missionName) {
-        try {
-            return Mission.getCourseByName(missionName);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return getMission(missionName);
-        }
-    }
-
-    private Level getLevel(String levelName) {
-        try {
-            return Level.getLevelByName(levelName);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return getLevel(levelName);
         }
     }
 

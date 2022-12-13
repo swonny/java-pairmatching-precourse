@@ -23,7 +23,7 @@ public class PairSearchingController {
         try {
             List<String> inputs = splitInput(input);
             Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
-            Mission mission = Mission.getCourseByName(inputs.get(MISSION_INDEX));
+            Mission mission = Mission.getMissionByName(inputs.get(MISSION_INDEX));
             return PairMatchingRepository.pairs(course, mission);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
