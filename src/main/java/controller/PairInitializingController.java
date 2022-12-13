@@ -1,13 +1,12 @@
 package controller;
 
+import repository.PairRepository;
+import view.OutputView;
+
 public class PairInitializingController {
 
     public void run() {
-        // TODO : try-catch
-        initializePairMatching();
-    }
-
-    private void initializePairMatching() {
-
+        PairRepository.initialize();
+        OutputView.printFinishedInitializing();
     }
 }

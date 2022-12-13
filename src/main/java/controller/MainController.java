@@ -9,29 +9,26 @@ import view.OutputView;
 public class MainController {
     private PairMatchingController pairMatchingController;
     private PairSearchingController pairSearchingController;
-    private PairMatchingService pairMatchingService;
     private PairInitializingController pairInitializingController;
 
     public MainController() {
         pairMatchingController = new PairMatchingController();
         pairSearchingController = new PairSearchingController();
         pairInitializingController = new PairInitializingController();
-        pairMatchingService = new PairMatchingService();
     }
 
     public void run() {
         OutputView.print(MainMenu.getWholeMenu());
-        // TODO : try-catch 필요
-        MainMenu selectedMenu = getMenu();
+        MainMenu selectedMenu = getMenu(InputView.readMainMenu());
         select(selectedMenu);
     }
 
-    private MainMenu getMenu() {
+    private MainMenu getMenu(String input) {
         try {
-            return MainMenu.getMenu(InputView.readMainMenu());
+            return MainMenu.getMenu(input);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return getMenu();
+            return getMenu(InputView.readMainMenu());
         }
     }
 

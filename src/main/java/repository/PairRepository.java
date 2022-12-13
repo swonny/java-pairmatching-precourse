@@ -34,4 +34,9 @@ public class PairRepository {
         }
         return getCoursePairs(course).get(mission);
     }
+
+    public static void initialize() {
+        frontendPairs.clear();
+        backendPairs.clear();
+    }
 }

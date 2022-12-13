@@ -43,4 +43,10 @@ public class OutputView {
         print(RETRY_COMMAND);
         printNewLine();
     }
+
+    public static void printFinishedInitializing() {
+        printNewLine();
+        print(FINISHED_INIT);
+        printNewLine();
+    }
 }

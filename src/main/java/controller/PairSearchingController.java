@@ -13,7 +13,6 @@ import java.util.List;
 
 public class PairSearchingController {
     private static final int COURSE_INDEX = 0;
-    private static final int LEVEL_INDEX = 1;
     private static final int MISSION_INDEX = 2;
 
     public void run() {
