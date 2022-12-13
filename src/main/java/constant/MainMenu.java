@@ -9,7 +9,6 @@ public enum MainMenu {
     THIRD("3", "3. 페어 초기화"),
     QUIT("Q", "Q. 종료");
 
-
     private final String command;
     private final String menuName;
 
