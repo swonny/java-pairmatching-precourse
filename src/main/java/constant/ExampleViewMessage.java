@@ -14,7 +14,9 @@ public enum ExampleViewMessage {
     LEVEL_5("  - 레벨5: "),
     SELECTION_MESSAGE("과정, 레벨, 미션을 선택하세요."),
     SELECTION_EXAMPLE("ex) 백엔드, 레벨1, 자동차경주"),
-    INFORMATION_END_DELIMITER("#############################################");
+    INFORMATION_END_DELIMITER("#############################################"),
+    SELECT_MESSAGE("과정, 레벨, 미션을 선택하세요."),
+    SELECT_EXAMPLE("ex) 백엔드, 레벨1, 자동차경주");
 
     private final String message;
 

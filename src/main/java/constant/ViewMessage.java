@@ -7,5 +7,4 @@ public class ViewMessage {
     public static final String ASK_RETRY_MATCHING1 = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
     public static final String ASK_RETRY_MATCHING2 = "네 | 아니오";
     public static final String FINISHED_INITIALIZING = "초기화 되었습니다.";
-
 }

@@ -16,8 +16,10 @@ public class PairRepository {
     }
 
     public static List<List<Crew>> pairs(Course course, Mission mission) {
-        // TODO : [ERROR] 매칭 이력이 없습니다. 에러 발생시키기
-        return null;
+        if (getPairsOf(course).containsKey(mission)) {
+            return getPairsOf(course).get(mission);
+        }
+        throw new IllegalArgumentException("매칭 이력이 없습니다.");
     }
 
     public static void initialize() {
