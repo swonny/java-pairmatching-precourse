@@ -4,8 +4,10 @@ import constant.Course;
 import constant.Mission;
 import pairmatching.Crew;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PairMatchingRepository {
     private static final HashMap<Mission, List<List<Crew>>> frontendPairs = new HashMap<>();
@@ -39,8 +41,15 @@ public class PairMatchingRepository {
     }
 
     public static boolean hasUniquePairsOnly(Course course, Mission mission, List<List<Crew>> pairs) {
-        // TODO : 값 변경하기
-        return true;
+        List<Mission> sameLevelMissions = getSameLevelMissions(mission);
+        List<List<Crew>> sameLevelPairs = new ArrayList<>();
+        for (Mission sameLevelMission : sameLevelMissions) {
+            if (hasPairs(course, sameLevelMission)) {
+                getCoursePairs(course).get(sameLevelMission).stream()
+                        .forEach(pair -> sameLevelPairs.add(pair));
+            }
+        }
+        return sameLevelPairs.stream().anyMatch(pair -> pairs.contains(pair));
     }
 
     private static List<Mission> getSameLevelMissions(Mission mission) {
