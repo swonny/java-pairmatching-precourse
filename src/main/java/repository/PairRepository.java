@@ -4,6 +4,7 @@ import constant.Course;
 import constant.Mission;
 import pairmatching.Crew;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class PairRepository {
     private static final HashMap<Mission, List<List<Crew>>> frontendPairs = new HashMap<>();
     private static final HashMap<Mission, List<List<Crew>>> backendPairs = new HashMap<>();
 
-    public static boolean hasPairOf(Course course, Mission mission) {
+    public static boolean hasPairsOf(Course course, Mission mission) {
         return getPairsOf(course).containsKey(mission);
     }
 
@@ -36,5 +37,24 @@ public class PairRepository {
             return frontendPairs;
         }
         return backendPairs;
+    }
+
+    public static boolean hasAnySamePairs(Course course, Mission mission, List<List<Crew>> pairs) {
+        List<Mission> sameLevelMissions = mission.getSameLevelMissions();
+        List<List<Crew>> sameLevelPairs = new ArrayList<>();
+        for (Mission sameLevelMission : sameLevelMissions) {
+            if (hasPairsOf(course, sameLevelMission)) {
+                sameLevelPairs.addAll(pairs(course, sameLevelMission));
+            }
+        }
+        for (List<Crew> pair : sameLevelPairs) {
+            if (pairs.contains(pair)) {
+                System.out.println(pairs);
+                System.out.println(pair);
+
+                return true;
+            }
+        }
+        return false;
     }
 }

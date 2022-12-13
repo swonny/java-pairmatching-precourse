@@ -25,7 +25,7 @@ public class PairMatchingController {
         Course course = (Course) inputs.get(COURSE_INDEX);
         Level level = (Level) inputs.get(LEVEL_INDEX);
         Mission mission = (Mission) inputs.get(MISSION_INDEX);
-        if (PairRepository.hasPairOf(course, mission) && !willRetryMatching(InputView.askRetryMatching())) {
+        if (PairRepository.hasPairsOf(course, mission) && !willRetryMatching(InputView.askRetryMatching())) {
             run();
             return;
         }
