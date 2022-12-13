@@ -4,9 +4,8 @@ import constant.Course;
 import constant.Level;
 import constant.Mission;
 import constant.RetryCommand;
-import pairmatching.Pair;
-import repository.CrewRepository;
-import repository.PairRepository;
+import pairmatching.Crew;
+import repository.PairMatchingRepository;
 import service.PairMatchingService;
 import view.InputView;
 import view.OutputView;
@@ -30,11 +29,11 @@ public class PairMatchingController {
         Course course = getCourse(input.get(COURSE_INDEX));
         Level level = getLevel(input.get(LEVEL_INDEX));
         Mission mission = getMission(input.get(MISSION_INDEX));
-        if (PairRepository.hasPairs(course, mission) && RetryCommand.WILL_NOT_RETRY.equals(willMakeNewPair())) {
+        if (PairMatchingRepository.hasPairs(course, mission) && RetryCommand.WILL_NOT_RETRY.equals(willMakeNewPair())) {
             run();
             return;
         }
-        List<Pair> pairs = getNewPairs(course, level, mission);
+        List<List<Crew>> pairs = getNewPairs(course, level, mission);
         OutputView.printPairMatchingResult(pairs);
     }
 
@@ -56,7 +55,7 @@ public class PairMatchingController {
         }
     }
 
-    private List<Pair> getNewPairs(Course course, Level level, Mission mission) {
+    private List<List<Crew>> getNewPairs(Course course, Level level, Mission mission) {
         try {
             return pairMatchingService.makePairs(course, level, mission);
         } catch (IllegalArgumentException exception) {

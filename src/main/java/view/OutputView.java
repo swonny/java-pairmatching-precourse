@@ -1,7 +1,7 @@
 package view;
 
 import constant.ExampleViewMessage;
-import pairmatching.Pair;
+import pairmatching.Crew;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,11 +20,10 @@ public class OutputView {
         print(ExampleViewMessage.getExample());
     }
 
-    public static void printPairMatchingResult(List<Pair> pairs) {
+    public static void printPairMatchingResult(List<List<Crew>> pairs) {
         printNewLine();
         pairs.stream()
-                .map(pair -> pair.getCrews()
-                        .stream().map(crew -> crew.getName()).collect(Collectors.joining(PAIR_DELIMITER)))
+                .map(crews -> crews.stream().map(crew -> crew.getName()).collect(Collectors.joining(PAIR_DELIMITER)))
                 .forEach(OutputView::print);
         printNewLine();
     }

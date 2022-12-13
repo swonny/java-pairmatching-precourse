@@ -1,10 +1,9 @@
 package controller;
 
 import constant.Course;
-import constant.Level;
 import constant.Mission;
-import pairmatching.Pair;
-import repository.PairRepository;
+import pairmatching.Crew;
+import repository.PairMatchingRepository;
 import view.InputView;
 import view.OutputView;
 
@@ -16,16 +15,16 @@ public class PairSearchingController {
     private static final int MISSION_INDEX = 2;
 
     public void run() {
-        List<Pair> pairs = getNewPairs(InputView.readPairInformation());
+        List<List<Crew>> pairs = getNewPairs(InputView.readPairInformation());
         OutputView.printPairMatchingResult(pairs);
     }
 
-    private List<Pair> getNewPairs(String input) {
+    private List<List<Crew>> getNewPairs(String input) {
         try {
             List<String> inputs = splitInput(input);
             Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
             Mission mission = Mission.getCourseByName(inputs.get(MISSION_INDEX));
-            return PairRepository.pairs(course, mission);
+            return PairMatchingRepository.pairs(course, mission);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return getNewPairs(InputView.readPairInformation());

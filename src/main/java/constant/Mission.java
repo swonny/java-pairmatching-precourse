@@ -1,6 +1,8 @@
 package constant;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Mission {
     CAR_RACING(Level.LEVEL1, "자동차경주"),
@@ -25,5 +27,11 @@ public enum Mission {
                 .filter(mission -> mission.gameName.equals(missionName))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 미션 이름입니다."));
+    }
+
+    public List<Mission> getSameLevelMissions() {
+        return Arrays.stream(Mission.values())
+                .filter(mission -> mission.level.equals(this.level) && !mission.equals(this))
+                .collect(Collectors.toList());
     }
 }
