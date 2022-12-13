@@ -43,14 +43,34 @@ class PairMatchingRepositoryTest {
         PairMatchingRepository.add(Course.BACKEND, Mission.CAR_RACING, Arrays.asList(pair1));
 
         System.out.println(PairMatchingRepository.hasAnySamePairs(Course.BACKEND, Mission.LOTTO ,Arrays.asList(pair2)));
-//        List<Crew> a = Arrays.asList(crew1, crew2);
-//        List<Crew> b = Arrays.asList(crew2, crew1);
-//        List<Crew> c = Arrays.asList(crew3, crew4);
-//        List<List<Crew>> pairs = Arrays.asList(a, b, c);
-//        System.out.println(pair2.getCrews().containsAll(pair1.getCrews()));
-//        System.out.println(pair2.equals(pair2));
+    }
 
+    @Test
+    public void test_중복아닌페어검사() {
+        Crew crew1 = new Crew(Course.BACKEND, "승");
+        Crew crew2 = new Crew(Course.BACKEND, "원");
+        Crew crew3 = new Crew(Course.BACKEND, "승");
+        Crew crew4 = new Crew(Course.BACKEND, "원");
 
+        Pair pair1 = new Pair(crew1, crew2);
+        Pair pair2 = new Pair(crew3, crew4);
+        PairMatchingRepository.add(Course.BACKEND, Mission.CAR_RACING, Arrays.asList(pair1));
+
+        System.out.println(PairMatchingRepository.hasAnySamePairs(Course.BACKEND, Mission.LOTTO ,Arrays.asList(pair2)));
+    }
+
+    @Test
+    public void test_중복페어검사_여러개() {
+        Crew crew1 = new Crew(Course.BACKEND, "승");
+        Crew crew2 = new Crew(Course.BACKEND, "원");
+        Crew crew3 = new Crew(Course.BACKEND, "승");
+        Crew crew4 = new Crew(Course.BACKEND, "원");
+
+        Pair pair1 = new Pair(crew1, crew2);
+        Pair pair2 = new Pair(crew3, crew4);
+        PairMatchingRepository.add(Course.BACKEND, Mission.CAR_RACING, Arrays.asList(pair1, pair2));
+
+        System.out.println(PairMatchingRepository.hasAnySamePairs(Course.BACKEND, Mission.LOTTO ,Arrays.asList(pair2)));
     }
 
     @Test
