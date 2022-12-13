@@ -1,6 +1,7 @@
 package controller;
 
 import constant.MainMenu;
+import repository.CrewRepository;
 import service.PairMatchingService;
 import view.InputView;
 import view.OutputView;
@@ -26,6 +27,9 @@ public class MainController {
     }
 
     public void select(MainMenu selection) {
+        if (MainMenu.QUIT.equals(selection)) {
+            return;
+        }
         if (MainMenu.FIRST.equals(selection)) {
             pairMatchingController.run();
         }
@@ -35,5 +39,6 @@ public class MainController {
         if (MainMenu.THIRD.equals(selection)) {
             pairInitializingController.run();
         }
+        run();
     }
 }

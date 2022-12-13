@@ -2,9 +2,12 @@ package controller;
 
 import constant.Course;
 import constant.Level;
-import repository.BackendPairRepository;
-import repository.FrontendPairRepository;
+import constant.Mission;
+import constant.RetryCommand;
 import pairmatching.Pair;
+import repository.CrewRepository;
+import repository.PairRepository;
+import service.PairMatchingService;
 import view.InputView;
 import view.OutputView;
 
@@ -16,20 +19,37 @@ public class PairMatchingController {
     private static final int LEVEL_INDEX = 1;
     private static final int MISSION_INDEX = 2;
 
+    private PairMatchingService pairMatchingService;
+
+    public PairMatchingController() {
+        pairMatchingService = new PairMatchingService();
+    }
+
     public void run() {
         List<String> input = getInputs();
         Course course = getCourse(input.get(COURSE_INDEX));
         Level level = getLevel(input.get(LEVEL_INDEX));
-        String mission = input.get(MISSION_INDEX);
-        List<Pair> pairs = getPairs(course, mission);
+        Mission mission = getMission(input.get(MISSION_INDEX));
+        if (PairRepository.hasPairs(course, mission) && RetryCommand.WILL_NOT_RETRY.equals(willMakeNewPair())) {
+            run();
+            return;
+        }
+        List<Pair> pairs = getNewPairs(course, level, mission);
+        OutputView.printPairMatchingResult(pairs);
     }
 
-    private List<Pair> getPairs(Course course, String mission) {
-        if (Course.FRONTEND.equals(course)) {
-            return FrontendPairRepository.getPairsOf(mission);
+    private RetryCommand willMakeNewPair() {
+        try {
+            return RetryCommand.getRetryCommand(InputView.askForRetry());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return willMakeNewPair();
         }
-        return BackendPairRepository.getPairsOf(mission);
     }
+
+//    private boolean willGetNewPairs() {
+//        if (PairRepository.)
+//    }
 
     private List<String> getInputs() {
         try {
@@ -40,12 +60,30 @@ public class PairMatchingController {
         }
     }
 
+    private List<Pair> getNewPairs(Course course, Level level, Mission mission) {
+        try {
+            return pairMatchingService.makePairs(course, level, mission);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return getNewPairs(course, level, mission);
+        }
+    }
+
     private Course getCourse(String courseName) {
         try {
             return Course.getCourseByName(courseName);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return getCourse(getInputs().get(COURSE_INDEX));
+            return getCourse(courseName);
+        }
+    }
+
+    private Mission getMission(String missionName) {
+        try {
+            return Mission.getCourseByName(missionName);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return getMission(missionName);
         }
     }
 
@@ -54,7 +92,7 @@ public class PairMatchingController {
             return Level.getLevelByName(levelName);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return getLevel(getInputs().get(LEVEL_INDEX));
+            return getLevel(levelName);
         }
     }
 
@@ -62,11 +100,6 @@ public class PairMatchingController {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("정확한 정보를 입력해주세요.");
         }
-        return Arrays.asList(InputView.readPairInformation().split(", "));
-    }
-
-    public void pairMatching(Course course, Level level, String mission) {
-        List<Pair> pairs = null;
-        OutputView.printPairMatchingResult(pairs);
+        return Arrays.asList(input.split(", "));
     }
 }

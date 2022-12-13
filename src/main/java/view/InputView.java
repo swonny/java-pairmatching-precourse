@@ -18,4 +18,9 @@ public class InputView {
         OutputView.printInformationForInput();
         return read();
     }
+
+    public static String askForRetry() {
+        OutputView.printAskingForRetry();
+        return read();
+    }
 }

@@ -21,16 +21,26 @@ public class OutputView {
     }
 
     public static void printPairMatchingResult(List<Pair> pairs) {
-        print(NEW_LINE);
-        print(PAIR_MATCHING_RESULT);
+        printNewLine();
         pairs.stream()
                 .map(pair -> pair.getCrews()
                         .stream().map(crew -> crew.getName()).collect(Collectors.joining(PAIR_DELIMITER)))
                 .forEach(OutputView::print);
-        print(NEW_LINE);
+        printNewLine();
     }
 
-    public static void printException(IllegalArgumentException exception) {
+    public static void printException(Exception exception) {
         print(ERROR + exception.getMessage());
+    }
+
+    public static void printNewLine() {
+        System.out.println();
+    }
+
+    public static void printAskingForRetry() {
+        printNewLine();
+        print(ASK_RETRY_PAIR_MATCHING);
+        print(RETRY_COMMAND);
+        printNewLine();
     }
 }
