@@ -47,10 +47,6 @@ public class PairMatchingController {
         }
     }
 
-//    private boolean willGetNewPairs() {
-//        if (PairRepository.)
-//    }
-
     private List<String> getInputs() {
         try {
             return splitInput(InputView.readPairInformation());

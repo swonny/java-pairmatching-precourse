@@ -1,6 +1,7 @@
 package repository;
 
 import constant.Course;
+import constant.ExceptionMessage;
 import constant.Mission;
 import pairmatching.Pair;
 
@@ -25,5 +26,12 @@ public class PairRepository {
             return frontendPairs;
         }
         return backendPairs;
+    }
+
+    public static List<Pair> pairs(Course course, Mission mission) {
+        if (!getCoursePairs(course).containsKey(mission)) {
+            throw new IllegalArgumentException("매칭 이력이 없습니다.");
+        }
+        return getCoursePairs(course).get(mission);
     }
 }

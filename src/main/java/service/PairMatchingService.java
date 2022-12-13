@@ -44,8 +44,4 @@ public class PairMatchingService {
         }
         return pairs;
     }
-
-//    private List<Pair> getPairs() {
-//
-//    }
 }

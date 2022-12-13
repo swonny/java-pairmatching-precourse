@@ -22,8 +22,17 @@ public class MainController {
     public void run() {
         OutputView.print(MainMenu.getWholeMenu());
         // TODO : try-catch 필요
-        MainMenu selectedMenu = MainMenu.getMenu(InputView.readMainMenu());
+        MainMenu selectedMenu = getMenu();
         select(selectedMenu);
+    }
+
+    private MainMenu getMenu() {
+        try {
+            return MainMenu.getMenu(InputView.readMainMenu());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return getMenu();
+        }
     }
 
     public void select(MainMenu selection) {
