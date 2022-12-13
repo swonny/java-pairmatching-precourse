@@ -23,7 +23,8 @@ public class PairRepository {
     }
 
     public static void initialize() {
-
+        frontendPairs.clear();
+        backendPairs.clear();
     }
 
     public static void add(Course course, Mission mission, List<List<Crew>> pairs) {
