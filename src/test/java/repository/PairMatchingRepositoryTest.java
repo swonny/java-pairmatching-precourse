@@ -1,12 +1,6 @@
 package repository;
 
-import constant.Course;
-import constant.Mission;
 import org.junit.jupiter.api.Test;
-import pairmatching.Crew;
-import pairmatching.Pair;
-
-import java.util.Arrays;
 
 class PairMatchingRepositoryTest {
     @Test
