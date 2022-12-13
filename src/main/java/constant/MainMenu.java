@@ -23,18 +23,6 @@ public enum MainMenu {
                 .collect(Collectors.joining("\n"));
     }
 
-    public static boolean isFirstMenu(String selection) {
-        return FIRST.userInput.equals(selection);
-    }
-
-    public static boolean isSecondMenu(String selection) {
-        return SECOND.userInput.equals(selection);
-    }
-
-    public static boolean isThirdMenu(String selection) {
-        return THIRD.userInput.equals(selection);
-    }
-
     public static MainMenu getMenu(String readMainMenu) {
         return Arrays.stream(MainMenu.values())
                 .filter(menu -> menu.userInput.equals(readMainMenu))

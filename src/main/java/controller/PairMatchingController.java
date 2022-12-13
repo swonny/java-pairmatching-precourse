@@ -30,7 +30,6 @@ public class PairMatchingController {
         Level level = (Level) input.get(LEVEL_INDEX);
         Mission mission = (Mission) input.get(MISSION_INDEX);
         if (PairMatchingRepository.hasPairs(course, mission) && RetryCommand.WILL_NOT_RETRY.equals(willMakeNewPair())) {
-            run();
             return;
         }
         List<List<Crew>> pairs = getNewPairs(course, level, mission);
