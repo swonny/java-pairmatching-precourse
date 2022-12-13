@@ -7,7 +7,6 @@ import pairmatching.Crew;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PairMatchingRepository {
     private static final HashMap<Mission, List<List<Crew>>> frontendPairs = new HashMap<>();
