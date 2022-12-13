@@ -14,7 +14,7 @@ public enum RetryMatching {
 
     public static RetryMatching getRetryCommand(String retryCommand) {
         return Arrays.stream(RetryMatching.values())
-                .filter(menu -> menu.command.equals(retryCommand))
+                .filter(retryMatching -> retryMatching.command.equals(retryCommand))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("네 | 아니오 중 하나를 입력하세요"));
     }

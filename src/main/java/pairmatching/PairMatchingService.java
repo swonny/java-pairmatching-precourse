@@ -5,6 +5,7 @@ import constant.Course;
 import constant.Level;
 import constant.Mission;
 import repository.CrewRepository;
+import repository.PairRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,11 +13,12 @@ import java.util.List;
 
 public class PairMatchingService {
 
-    public static List<List<Crew>> getNewPairs(Course course, Level level, Mission mission) {
+    public static List<List<Crew>> makeNewPairs(Course course, Level level, Mission mission) {
         // TODO : 중복 검사
         List<Crew> crews = CrewRepository.crews(course);
         List<Crew> shuffledCrew = Randoms.shuffle(crews);
         List<List<Crew>> pairs = getPairs(shuffledCrew);
+        PairRepository.add(course, mission, pairs);
         return pairs;
     }
 

@@ -25,7 +25,7 @@ public class PairMatchingController {
         Course course = (Course) inputs.get(COURSE_INDEX);
         Level level = (Level) inputs.get(LEVEL_INDEX);
         Mission mission = (Mission) inputs.get(MISSION_INDEX);
-        if (PairRepository.hasPairOf(mission) && !willRetryMatching(InputView.askRetryMatching())) {
+        if (PairRepository.hasPairOf(course, mission) && !willRetryMatching(InputView.askRetryMatching())) {
             run();
             return;
         }
@@ -35,7 +35,8 @@ public class PairMatchingController {
 
     private static boolean willRetryMatching(String input) {
         try {
-            return RetryMatching.RETRY.equals(RetryMatching.getRetryCommand(input));
+            RetryMatching command = RetryMatching.getRetryCommand(input);
+            return RetryMatching.RETRY.equals(command);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return willRetryMatching(InputView.askRetryMatching());
@@ -44,7 +45,7 @@ public class PairMatchingController {
 
     private static List<List<Crew>> getPairs(Course course, Level level, Mission mission) {
         try {
-            return PairMatchingService.getNewPairs(course, level, mission);
+            return PairMatchingService.makeNewPairs(course, level, mission);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return Collections.emptyList();

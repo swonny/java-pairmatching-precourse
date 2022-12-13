@@ -19,6 +19,6 @@ public class InputView {
 
     public static String askRetryMatching() {
         OutputView.printAskingRetryMatching();
-        return null;
+        return read();
     }
 }
