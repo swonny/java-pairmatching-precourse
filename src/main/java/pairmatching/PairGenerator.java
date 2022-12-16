@@ -2,7 +2,6 @@ package pairmatching;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import constant.Course;
-import constant.Level;
 import constant.Mission;
 import repository.CrewRepository;
 import repository.PairRepository;
@@ -19,7 +18,7 @@ public class PairGenerator {
         List<Pair> pairs;
         for (int trial = 0; trial < MAX_TRIAL; trial++) {
             pairs = getPairs(shuffledCrews);
-            if (!pairs.isEmpty()) {
+            if (!PairRepository.hasSamePair(course, pairs, mission)) {
                 PairRepository.addPairs(mission, pairs);
                 return pairs;
             }
@@ -38,7 +37,6 @@ public class PairGenerator {
             Crew crew = CrewRepository.getCrewByName(shuffledCrews.get(shuffledCrews.size() - 1));
             pairs.get(pairs.size() - 1).addCrew(crew);
         }
-        // TODO : 중복검사 후 중복되면 emptylist return하긴
         return pairs;
     }
 }

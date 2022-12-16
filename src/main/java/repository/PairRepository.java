@@ -2,7 +2,6 @@ package repository;
 
 import constant.Course;
 import constant.Mission;
-import pairmatching.Crew;
 import pairmatching.Pair;
 
 import java.util.HashMap;
@@ -37,5 +36,10 @@ public class PairRepository {
 
     public static void addPairs(Mission mission, List<Pair> newPairs) {
         pairs.put(mission, newPairs);
+    }
+
+    public static boolean hasSamePair(Course course, List<Pair> pairs, Mission mission) {
+        // TODO : 구현해보기
+        return false;
     }
 }

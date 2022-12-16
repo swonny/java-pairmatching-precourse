@@ -46,7 +46,6 @@ public class PairMatchingController {
     }
 
     private boolean checkRematchRequirement(Course course, Mission mission) {
-        // TODO : hasAlready() 등으로 분리하기
         if (PairRepository.hasPairs(course, mission)) {
             return RematchCommand.WILL_NOT_REMATCH.equals(askRematch(InputView.readRematchCommand()));
         }

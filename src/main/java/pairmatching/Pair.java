@@ -3,7 +3,6 @@ package pairmatching;
 import constant.Course;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Pair {
@@ -18,7 +17,6 @@ public class Pair {
     }
 
     public List<Crew> crews() {
-        // TODO : 리턴값 변경
         return crews;
     }
 

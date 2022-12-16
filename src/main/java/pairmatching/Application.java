@@ -1,8 +1,6 @@
 package pairmatching;
 
-import constant.Course;
 import controller.MainController;
-import repository.CrewRepository;
 import view.BegginingInitializer;
 
 public class Application {
