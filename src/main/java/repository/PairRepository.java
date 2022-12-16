@@ -13,8 +13,11 @@ public class PairRepository {
     private static HashMap<Mission, List<Pair>> pairs = new HashMap<>();
 
     public static boolean hasPairs(Course course, Mission mission) {
-        // TODO : 반환값 변경
-        return true;
+        if (!pairs.containsKey(mission)) {
+            return false;
+        }
+        return pairs.get(mission).stream()
+                .anyMatch(pair -> pair.getCourse().equals(course));
     }
 
     public static List<Pair> pairs(Course course, Mission mission) {

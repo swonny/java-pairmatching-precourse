@@ -37,7 +37,6 @@ public class PairMatchingController {
             // TODO : 리턴값만 메소드로 분리해보기 너무 김
             return pairGenerator.generate(
                     (Course) matchingInformation.get(COURSE_NAME_INDEX),
-                    (Level) matchingInformation.get(LEVEL_NAME_INDEX),
                     (Mission) matchingInformation.get(MISSION_NAME_INDEX)
             );
         } catch (IllegalArgumentException exception) {

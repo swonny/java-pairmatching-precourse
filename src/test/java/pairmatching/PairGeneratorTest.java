@@ -19,7 +19,7 @@ class PairGeneratorTest {
         BegginingInitializer begginingInitializer = new BegginingInitializer();
         begginingInitializer.initializeCrewRepository();
         PairGenerator pairGenerator = new PairGenerator();
-        List<Pair> pairs = pairGenerator.generate(Course.BACKEND, Level.LEVEL1, Mission.BASEBALL_GAME);
+        List<Pair> pairs = pairGenerator.generate(Course.BACKEND, Mission.BASEBALL_GAME);
         pairs.stream()
                 .map(pair -> pair.crews().stream().map(crew -> crew.getName()).collect(Collectors.joining(" : ")))
                 .forEach(System.out::println);
@@ -30,7 +30,7 @@ class PairGeneratorTest {
         BegginingInitializer begginingInitializer = new BegginingInitializer();
         begginingInitializer.initializeCrewRepository();
         PairGenerator pairGenerator = new PairGenerator();
-        List<Pair> pairs = pairGenerator.generate(Course.FRONTEND, Level.LEVEL1, Mission.BASEBALL_GAME);
+        List<Pair> pairs = pairGenerator.generate(Course.FRONTEND, Mission.BASEBALL_GAME);
         pairs.stream()
                 .map(pair -> pair.crews().stream().map(crew -> crew.getName()).collect(Collectors.joining(" : ")))
                 .forEach(System.out::println);
@@ -41,7 +41,7 @@ class PairGeneratorTest {
         BegginingInitializer begginingInitializer = new BegginingInitializer();
         begginingInitializer.initializeCrewRepository();
         PairGenerator pairGenerator = new PairGenerator();
-        List<Pair> pairs = pairGenerator.generate(Course.FRONTEND, Level.LEVEL1, Mission.BASEBALL_GAME);
+        List<Pair> pairs = pairGenerator.generate(Course.FRONTEND, Mission.BASEBALL_GAME);
         pairs = PairRepository.pairs(Course.FRONTEND, Mission.BASEBALL_GAME);
         assertThat(pairs.get(0).getCourse())
                 .isEqualTo(Course.FRONTEND);

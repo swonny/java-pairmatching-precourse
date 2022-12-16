@@ -13,7 +13,7 @@ import java.util.List;
 public class PairGenerator {
     private static final int MAX_TRIAL = 3;
 
-    public List<Pair> generate(Course course, Level level, Mission mission) {
+    public List<Pair> generate(Course course, Mission mission) {
         List<Crew> crews = CrewRepository.getCrew(course);
         List<Crew> shuffledCrews = Randoms.shuffle(crews);
         List<Pair> pairs;
