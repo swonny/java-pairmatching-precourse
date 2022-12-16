@@ -1,7 +1,13 @@
 package pairmatching;
 
+import controller.MainController;
+import view.BegginingInitializer;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 구현 진행
+        BegginingInitializer begginingInitializer = new BegginingInitializer();
+        begginingInitializer.initializeCrewRepository();
+        MainController mainController = new MainController();
+        mainController.run();
     }
 }
