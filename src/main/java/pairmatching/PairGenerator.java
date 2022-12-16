@@ -5,6 +5,7 @@ import constant.Course;
 import constant.Level;
 import constant.Mission;
 import repository.CrewRepository;
+import repository.PairRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class PairGenerator {
         for (int trial = 0; trial < MAX_TRIAL; trial++) {
             pairs = getPairs(shuffledCrews);
             if (!pairs.isEmpty()) {
+                PairRepository.addPairs(mission, pairs);
                 return pairs;
             }
         }

@@ -21,6 +21,9 @@ public class MainController {
     }
 
     private void runMenu(MainMenu selectedMenu) {
+        if (MainMenu.QUIT.equals(selectedMenu)) {
+            return;
+        }
         if (MainMenu.FIRST.equals(selectedMenu)) {
             pairMatchingController.run();
         }
@@ -30,6 +33,7 @@ public class MainController {
         if (MainMenu.THIRD.equals(selectedMenu)) {
             pairInitializingController.run();
         }
+        run();
     }
 
     private MainMenu getSelectedMenu(String selectedMenu) {

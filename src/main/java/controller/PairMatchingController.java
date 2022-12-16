@@ -25,7 +25,6 @@ public class PairMatchingController {
         OutputView.printWholeInformation();
         List<Pair> pairs = getPairs(new PairGenerator());
         OutputView.printPairMatchingResult(pairs);
-        // TODO : pairs저장
     }
 
     private List<Pair> getPairs(PairGenerator pairGenerator) {
