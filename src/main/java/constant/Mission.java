@@ -1,5 +1,7 @@
 package constant;
 
+import java.util.Arrays;
+
 public enum Mission {
     CART_RACING("자동차경주", Level.LEVEL1),
     LOTTO("로또", Level.LEVEL1),
@@ -10,11 +12,18 @@ public enum Mission {
     REFACTOR("성능개선", Level.LEVEL4),
     DISTRIBUTE("배포", Level.LEVEL4);
 
-    private final String missionName;
+    private final String name;
     private final Level level;
 
-    Mission(String missionName, Level level) {
-        this.missionName = missionName;
+    Mission(String name, Level level) {
+        this.name = name;
         this.level = level;
+    }
+
+    public static Mission getMissionByName(String missionName) {
+        return Arrays.stream(Mission.values())
+                .filter(mission -> mission.name.equals(missionName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("미션 이름을 정확히 입력하세요."));
     }
 }
