@@ -21,7 +21,6 @@ public class PairRepository {
     }
 
     public static List<Pair> pairs(Course course, Mission mission) {
-        // TODO : 반환값 변경
         return pairs.get(mission).stream()
                 .filter(pair -> pair.getCourse().equals(course))
                 .collect(Collectors.toList());

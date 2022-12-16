@@ -23,32 +23,32 @@ public class PairMatchingController {
 
     public void run() {
         OutputView.printWholeInformation();
-        List<Pair> pairs = getPairs(new PairGenerator());
+        List<Enum> matchingInformation = getWholeInformation(InputView.readMatchingInformation());
+        Course course = (Course) matchingInformation.get(COURSE_NAME_INDEX);
+        Level level = (Level) matchingInformation.get(LEVEL_NAME_INDEX);
+        Mission mission = (Mission) matchingInformation.get(MISSION_NAME_INDEX);
+        boolean newInformationRequired = checkRematchRequirement(course, mission);
+        if (newInformationRequired) {
+            // TODO : matchingInformation만 반복되게구현
+            run();
+        }
+        List<Pair> pairs = getPairs(new PairGenerator(), course, mission);
         OutputView.printPairMatchingResult(pairs);
     }
 
-    private List<Pair> getPairs(PairGenerator pairGenerator) {
+    private List<Pair> getPairs(PairGenerator pairGenerator, Course course, Mission mission) {
         try {
-            List<Enum> matchingInformation = getWholeInformation(InputView.readMatchingInformation());
-            boolean rematchRequired = checkRematchRequirement(matchingInformation);
-            if (!rematchRequired) {
-                return getPairs(pairGenerator);
-            }
-            // TODO : 리턴값만 메소드로 분리해보기 너무 김
-            return pairGenerator.generate(
-                    (Course) matchingInformation.get(COURSE_NAME_INDEX),
-                    (Mission) matchingInformation.get(MISSION_NAME_INDEX)
-            );
+            return pairGenerator.generate(course, mission);
         } catch (IllegalArgumentException exception) {
             OutputView.printExceptionMessage(exception);
-            return getPairs(pairGenerator);
+            return getPairs(pairGenerator, course, mission);
         }
     }
 
-    private boolean checkRematchRequirement(List<Enum> matchingInformation) {
+    private boolean checkRematchRequirement(Course course, Mission mission) {
         // TODO : hasAlready() 등으로 분리하기
-        if (PairRepository.hasPairs((Course) matchingInformation.get(COURSE_NAME_INDEX), (Mission) matchingInformation.get(MISSION_NAME_INDEX))) {
-            return RematchCommand.WILL_REMATCH.equals(askRematch(InputView.readRematchCommand()));
+        if (PairRepository.hasPairs(course, mission)) {
+            return RematchCommand.WILL_NOT_REMATCH.equals(askRematch(InputView.readRematchCommand()));
         }
         return false;
     }
