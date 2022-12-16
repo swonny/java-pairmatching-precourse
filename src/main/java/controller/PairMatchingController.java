@@ -23,6 +23,10 @@ public class PairMatchingController {
 
     public void run() {
         OutputView.printWholeInformation();
+        makePairMatching();
+    }
+
+    private void makePairMatching() {
         List<Enum> matchingInformation = getWholeInformation(InputView.readMatchingInformation());
         Course course = (Course) matchingInformation.get(COURSE_NAME_INDEX);
         Level level = (Level) matchingInformation.get(LEVEL_NAME_INDEX);
@@ -30,7 +34,7 @@ public class PairMatchingController {
         boolean newInformationRequired = checkRematchRequirement(course, mission);
         if (newInformationRequired) {
             // TODO : matchingInformation만 반복되게구현
-            run();
+            makePairMatching();
         }
         List<Pair> pairs = getPairs(new PairGenerator(), course, mission);
         OutputView.printPairMatchingResult(pairs);
