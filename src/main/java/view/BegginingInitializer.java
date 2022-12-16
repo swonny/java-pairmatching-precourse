@@ -15,13 +15,13 @@ public class BegginingInitializer {
 
     public void initializeCrewRepository() {
         initialize(Course.BACKEND, "src/main/resources/backend-crew.md");
-        initialize(Course.BACKEND, "src/main/resources/frontend-crew.md");
+        initialize(Course.FRONTEND, "src/main/resources/frontend-crew.md");
     }
 
     private void initialize(Course course, String filePath) {
         try {
-            File backendCrews = new File(filePath);
-            FileReader fileReader = new FileReader(backendCrews);
+            File crews = new File(filePath);
+            FileReader fileReader = new FileReader(crews);
             BufferedReader bufReader = new BufferedReader(fileReader);
             String crewName = "";
             while ((crewName = bufReader.readLine()) != null) {

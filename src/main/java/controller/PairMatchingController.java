@@ -25,6 +25,7 @@ public class PairMatchingController {
         OutputView.printWholeInformation();
         List<Pair> pairs = getPairs(new PairGenerator());
         OutputView.printPairMatchingResult(pairs);
+        // TODO : pairs저장
     }
 
     private List<Pair> getPairs(PairGenerator pairGenerator) {
@@ -34,7 +35,12 @@ public class PairMatchingController {
             if (!rematchRequired) {
                 return getPairs(pairGenerator);
             }
-            return pairGenerator.generate(matchingInformation);
+            // TODO : 리턴값만 메소드로 분리해보기 너무 김
+            return pairGenerator.generate(
+                    (Course) matchingInformation.get(COURSE_NAME_INDEX),
+                    (Level) matchingInformation.get(LEVEL_NAME_INDEX),
+                    (Mission) matchingInformation.get(MISSION_NAME_INDEX)
+            );
         } catch (IllegalArgumentException exception) {
             OutputView.printExceptionMessage(exception);
             return getPairs(pairGenerator);
