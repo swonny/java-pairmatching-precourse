@@ -31,7 +31,8 @@ public class PairRepository {
     }
 
     public static void clearPairs() {
-        // TODO : 로직 구현 필요
+        pairs.clear();
+        pairs = new HashMap<>();
     }
 
     public static void addPairs(Mission mission, List<Pair> newPairs) {
