@@ -13,22 +13,8 @@ import java.util.List;
 public class PairGenerator {
     private static final int MAX_TRIAL = 3;
 
-//    public List<Pair> generate(Course course, Mission mission) {
-//        List<Crew> crews = CrewRepository.getCrew(course);
-//        List<Crew> shuffledCrews = Randoms.shuffle(crews);
-//        List<Pair> pairs;
-//        for (int trial = 0; trial < MAX_TRIAL; trial++) {
-//            pairs = getPairs(shuffledCrews);
-//            if (!pairs.isEmpty()) {
-//                PairRepository.addPairs(mission, pairs);
-//                return pairs;
-//            }
-//        }
-//        throw new IllegalArgumentException("페어 매칭 3회 시도 후 실패하였습니다.");
-//    }
-
     public List<Pair> generate(Course course, Mission mission) {
-        List<String> crews = CrewRepository.getCrewNames();
+        List<String> crews = CrewRepository.getCrewNames(course);
         List<String> shuffledCrews = Randoms.shuffle(crews);
         List<Pair> pairs;
         for (int trial = 0; trial < MAX_TRIAL; trial++) {

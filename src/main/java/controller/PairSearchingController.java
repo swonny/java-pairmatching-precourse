@@ -30,7 +30,7 @@ public class PairSearchingController {
         try {
             List<Enum> matchingInformation = getWholeInformation(InputView.readMatchingInformation());
             return PairRepository.pairs((Course) matchingInformation.get(COURSE_NAME_INDEX), (Mission) matchingInformation.get(MISSION_NAME_INDEX));
-        } catch (IllegalArgumentException exception) {
+        } catch (Exception exception) {
             OutputView.printExceptionMessage(exception);
             return getPairs();
         }

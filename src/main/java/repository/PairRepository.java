@@ -7,6 +7,7 @@ import pairmatching.Pair;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class PairRepository {
@@ -21,6 +22,9 @@ public class PairRepository {
     }
 
     public static List<Pair> pairs(Course course, Mission mission) {
+        if (!hasPairs(course, mission)) {
+            throw new NoSuchElementException("매칭 이력이 없습니다.");
+        }
         return pairs.get(mission).stream()
                 .filter(pair -> pair.getCourse().equals(course))
                 .collect(Collectors.toList());

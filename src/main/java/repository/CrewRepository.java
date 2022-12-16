@@ -25,8 +25,9 @@ public class CrewRepository {
                 .collect(Collectors.toList());
     }
 
-    public static List<String> getCrewNames() {
+    public static List<String> getCrewNames(Course course) {
         return crews().stream()
+                .filter(crew -> crew.getCourse().equals(course))
                 .map(crew -> crew.getName())
                 .collect(Collectors.toList());
     }
